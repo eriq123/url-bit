@@ -28,10 +28,10 @@ class SiteController extends Controller
         $arrSiteNewPaths = Site::pluck('new_path')->toArray();
 
         do {
-            $new_path = Str::random($length);
-        } while (in_array($new_path, $arrSiteNewPaths));
+            $newPath = Str::random($length);
+        } while (in_array($newPath, $arrSiteNewPaths));
 
-        return $new_path;
+        return $newPath;
     }
 
     public function shorten(Request $request)
@@ -47,10 +47,6 @@ class SiteController extends Controller
     public function redirect($url)
     {
         $site = Site::where('new_path', $url)->first();
-        if (isset($site->full_path)) {
-            return redirect($site->full_path);
-        } else {
-            abort(401);
-        }
+        return isset($site->full_path) ? redirect($site->full_path) : abort(404);
     }
 }
