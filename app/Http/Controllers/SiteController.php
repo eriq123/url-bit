@@ -20,18 +20,25 @@ class SiteController extends Controller
             $newPath
         )->first();
 
-        return isset($site) ? view('view', compact('site')) : view('index');
+        return isset($site) ? view('view', compact('site')) : redirect()->route('index');
+    }
+
+    private function getUniquePath($length = 5)
+    {
+        $arrSiteNewPaths = Site::pluck('new_path')->toArray();
+
+        do {
+            $new_path = Str::random($length);
+        } while (in_array($new_path, $arrSiteNewPaths));
+
+        return $new_path;
     }
 
     public function shorten(Request $request)
     {
         $site = new Site();
         $site->full_path = $request->url;
-        do {
-            $site->new_path = Str::random(5);
-            $validateNewPathUniqueness = Site::where('new_path', $site->new_path)->get();
-        } while ($validateNewPathUniqueness->count() !== 0);
-
+        $site->new_path = $this->getUniquePath();
         $site->save();
 
         return redirect()->route('view', ['url' => $site->new_path]);
