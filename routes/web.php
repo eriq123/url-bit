@@ -1,10 +1,7 @@
 <?php
 
-use App\Models\Site;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,37 +14,7 @@ use Illuminate\Support\Str;
 |
 */
 
-Route::get('/', function () {
-    $site = Site::all();
-    return view('index');
-});
-
-
-Route::post('/shorten', function (Request $request) {
-
-    $site = new Site();
-
-    $site->full_path = $request->url;
-
-
-    do {
-        $newPath = Str::random(12);
-        $validateNewPathUniqueness = Site::where('new_path', $newPath)->get();
-        Log::info($newPath);
-    } while ($validateNewPathUniqueness->count() !== 0);
-
-    $site->new_path = $newPath;
-    $site->save();
-
-    return view('index', ['site' => $site]);
-});
-
-Route::get('/{url}', function ($url) {
-
-    $site = Site::where('new_path', $url)->first();
-    if (isset($site->full_path)) {
-        return redirect($site->full_path);
-    } else {
-        abort(401);
-    }
-});
+Route::get('/', [SiteController::class, 'index'])->name('index');
+Route::get('/{url}', [SiteController::class, 'redirect'])->name('redirect');
+Route::post('/shorten', [SiteController::class, 'shorten'])->name('shorten');
+Route::get('/shorten/{url}', [SiteController::class, 'view'])->name('view');
