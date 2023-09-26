@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Site;
+use App\Http\Requests\SiteShortenRequest;
 use App\Repositories\SiteRepository;
 use Illuminate\Http\Request;
 
@@ -28,7 +28,7 @@ class SiteController extends Controller
     }
 
 
-    public function shorten(Request $request)
+    public function shorten(SiteShortenRequest $request)
     {
         $site = $this->siteRepository->createNewSite($request->url);
         return redirect()->route('view', ['url' => $site->new_path]);
