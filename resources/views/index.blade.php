@@ -3,9 +3,9 @@
     <form action="{{ route('shorten') }}" method="POST">
         @csrf
         <div class="input-group">
-            <input type="text" name='url' class="form-control">
+            <input type="text" name='url' required class="form-control">
             <button class="btn" type='submit'>
-                Shorten
+                @include('svg.send')
             </button>
         </div>
     </form>
