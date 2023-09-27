@@ -20,7 +20,7 @@ Route::controller(SiteController::class)->group(function () {
     Route::get('/{url}', 'redirect')->name('redirect');
 
     Route::prefix('shorten')->group(function () {
-        Route::post('', 'shorten')->name('shorten');
+        Route::post('/', 'shorten')->name('shorten');
         Route::get('/{url}', 'view')->name('view');
     });
 });
