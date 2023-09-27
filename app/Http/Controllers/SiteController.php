@@ -17,7 +17,9 @@ class SiteController extends Controller
 
     public function index()
     {
-        return view('index');
+        return view('index', [
+            'sites' => $this->siteRepository->getSitesByIp(request()->ip())
+        ]);
     }
 
     public function view($newPath)
@@ -30,8 +32,8 @@ class SiteController extends Controller
 
     public function shorten(SiteShortenRequest $request)
     {
-        $site = $this->siteRepository->createNewSite($request->url);
-        return redirect()->route('view', ['url' => $site->new_path]);
+        $this->siteRepository->createNewSite($request->url, request()->ip());
+        return redirect()->route('index');
     }
 
     public function redirect($url)

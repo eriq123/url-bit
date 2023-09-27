@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('sites', function (Blueprint $table) {
             $table->id();
+            $table->string('ip_address');
             $table->text('full_path');
             $table->text('new_path')->unique();
             $table->timestamps();

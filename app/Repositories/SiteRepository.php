@@ -23,13 +23,19 @@ class SiteRepository implements SiteInterface
         return $uniquePath;
     }
 
-    public function createNewSite($fullPath)
+    public function createNewSite($fullPath, $ip)
     {
         $site = new Site();
+        $site->ip_address = $ip;
         $site->full_path = $fullPath;
         $site->new_path = $this->getUniquePath();
         $site->save();
 
         return $site;
+    }
+
+    public function getSitesByIp($ip)
+    {
+        return Site::where('ip_address', $ip)->get();
     }
 }
