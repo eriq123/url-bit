@@ -2,7 +2,7 @@
 @section('content')
     <form action="{{ route('shorten') }}" method="POST">
         @csrf
-        <div class="input-group">
+        <div class="input-group pt-3">
             <input type="text" name='url' required class="form-control">
             <button class="btn" type='submit'>
                 @include('svg.send')
