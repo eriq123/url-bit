@@ -2,12 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Site;
+use App\Http\Requests\SiteShortenRequest;
+use App\Repositories\SiteRepository;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class SiteController extends Controller
 {
+    private $siteRepository;
+
+    public function __construct(SiteRepository $siteRepository)
+    {
+        $this->siteRepository = $siteRepository;
+    }
+
     public function index()
     {
         return view('index');
@@ -15,38 +22,21 @@ class SiteController extends Controller
 
     public function view($newPath)
     {
-        $site = Site::where(
-            'new_path',
-            $newPath
-        )->first();
-
-        return isset($site) ? view('view', compact('site')) : redirect()->route('index');
+        return view('view', [
+            'site' => $this->siteRepository->getSiteByNewPath($newPath)
+        ]);
     }
 
-    private function getUniquePath($length = 5)
+
+    public function shorten(SiteShortenRequest $request)
     {
-        $arrSiteNewPaths = Site::pluck('new_path')->toArray();
-
-        do {
-            $newPath = Str::random($length);
-        } while (in_array($newPath, $arrSiteNewPaths));
-
-        return $newPath;
-    }
-
-    public function shorten(Request $request)
-    {
-        $site = new Site();
-        $site->full_path = $request->url;
-        $site->new_path = $this->getUniquePath();
-        $site->save();
-
+        $site = $this->siteRepository->createNewSite($request->url);
         return redirect()->route('view', ['url' => $site->new_path]);
     }
 
     public function redirect($url)
     {
-        $site = Site::where('new_path', $url)->first();
+        $site = $this->siteRepository->getSiteByNewPath($url);
         return isset($site->full_path) ? redirect($site->full_path) : abort(404);
     }
 }

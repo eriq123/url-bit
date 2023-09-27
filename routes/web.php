@@ -14,7 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [SiteController::class, 'index'])->name('index');
-Route::get('/{url}', [SiteController::class, 'redirect'])->name('redirect');
-Route::post('/shorten', [SiteController::class, 'shorten'])->name('shorten');
-Route::get('/shorten/{url}', [SiteController::class, 'view'])->name('view');
+
+Route::controller(SiteController::class)->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('/{url}', 'redirect')->name('redirect');
+
+    Route::prefix('shorten')->group(function () {
+        Route::post('', 'shorten')->name('shorten');
+        Route::get('/{url}', 'view')->name('view');
+    });
+});
