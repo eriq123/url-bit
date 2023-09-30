@@ -1,1 +1,11 @@
 @import "~bootstrap/scss/bootstrap";
+
+$gap: 8px;
+
+.navbar-brand {
+    gap: $gap;
+}
+
+.navbar-nav {
+    gap: $gap;
+}
