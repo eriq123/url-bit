@@ -1,6 +1,7 @@
 @import "~bootstrap/scss/bootstrap";
 
 $gap: 8px;
+$borderRadius: 4px;
 
 .navbar-brand {
     gap: $gap;
@@ -8,4 +9,20 @@ $gap: 8px;
 
 .navbar-nav {
     gap: $gap;
+}
+
+.main--form {
+    .main--input-group {
+        border-radius: $borderRadius;
+        .main--input {
+            &:focus {
+                box-shadow: 0 0 0 0;
+            }
+        }
+        .main--button {
+            &:active {
+                border: 0;
+            }
+        }
+    }
 }
