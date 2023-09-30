@@ -1,13 +1,13 @@
 @extends('layout.main')
 @section('content')
-    <div class="container py-5">
-        <form action="{{ route('shorten') }}" method="POST" class="main--form">
+    <div class="container py-0">
+        <form action="{{ route('shorten') }}" method="POST" class="main--form d-flex align-items-end">
             @csrf
-            <div class="input-group bg-light main--input-group">
-                <input type="text" name='url' required class="main--input form-control bg-light border border-0">
-                <button class="btn btn-primary-outlined main--button" type='submit'>
+            <div class="main--input-group input-group input-group-lg bg-white rounded-pill d-flex">
+                <input type="text" name='url' required placeholder="Paste your looooooooong url links"
+                    class="main--input form-control bg-white border border-0 rounded-pill">
+                <button class="btn btn-outline-primary main--button rounded-pill text-uppercase" type='submit'>
                     Shorten
-                    @include('svg.send')
                 </button>
             </div>
         </form>

@@ -11,11 +11,10 @@
 </head>
 
 <body>
-    <div class='bg-primary-subtle bg-gradient vh-100'>
-        @include('partials.header')
+    <div class='bg-primary-subtle bg-gradient main--background'></div>
+    @include('partials.header')
 
-        @yield('content')
-    </div>
+    @yield('content')
 </body>
 
 </html>

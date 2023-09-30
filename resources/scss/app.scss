@@ -3,23 +3,48 @@
 $gap: 8px;
 $borderRadius: 4px;
 
-.navbar-brand {
-    gap: $gap;
+body {
+    background: $gray-200;
 }
 
-.navbar-nav {
-    gap: $gap;
+$navbarHeight: 80px;
+.navbar {
+    height: $navbarHeight;
+    .navbar-brand {
+        gap: $gap;
+    }
+
+    .navbar-nav {
+        gap: $gap;
+    }
 }
 
+.main--background {
+    position: absolute;
+    height: 50vh;
+    width: 100%;
+}
+
+$inputGroupHeight: 80px;
 .main--form {
+    height: calc(50vh - $navbarHeight + ($inputGroupHeight / 2));
     .main--input-group {
+        height: $inputGroupHeight;
         border-radius: $borderRadius;
+        box-sizing: border-box;
+        padding: 5px;
         .main--input {
+            padding: 16px 32px;
             &:focus {
                 box-shadow: 0 0 0 0;
             }
         }
         .main--button {
+            width: 150px;
+            box-sizing: border-box;
+            &.btn.btn-outline-primary.rounded-pill.text-uppercase {
+                margin-left: 1px;
+            }
             &:active {
                 border: 0;
             }
