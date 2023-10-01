@@ -13,8 +13,8 @@
 <body>
     @yield('header')
     @include('partials.header')
-    @include('partials.alert')
     @yield('content')
+    @include('partials.alert')
     @yield('js')
 </body>
 
