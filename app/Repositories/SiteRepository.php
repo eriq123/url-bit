@@ -13,7 +13,7 @@ class SiteRepository implements SiteInterface
         return Site::where('new_path', $newPath)->first();
     }
 
-    private function getUniquePath($length = 5)
+    private function getUniquePath($length = 4)
     {
         $arrSiteNewPaths = Site::pluck('new_path')->toArray();
         do {
