@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <div class='bg-primary-subtle bg-gradient main--background'></div>
+    <div class='bg-primary-subtle bg-gradient main--background z-n1'></div>
     @include('partials.header')
 
     @yield('content')
