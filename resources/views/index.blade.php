@@ -4,7 +4,7 @@
         <div class="main--form d-flex flex-column">
 
             <div class="flex-grow-1 d-flex flex-column justify-content-center">
-                <h1 class="text-center text-uppercase display-1 text-primary-emphasis">{{ config('app.name') }}</h1>
+                <h1 class="text-center text-uppercase display-1 text-primary-emphasis fw-bold">{{ config('app.name') }}</h1>
                 <h3 class="text-center text-italic text-uppercase text-light-emphasis">Shorten long url links</h3>
             </div>
             <form action="{{ route('shorten') }}" method="POST" class="align-items-end">
