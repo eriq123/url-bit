@@ -15,7 +15,7 @@ class SiteRepository implements SiteInterface
         return Site::where('new_path', $newPath)->first();
     }
 
-    private function getMaxUniquePathCombinations($length)
+    public function getMaxUniquePathCombinations($length)
     {
         $lowercaseLetters = 26;
         $uppercaseLetters = 26;
@@ -23,21 +23,20 @@ class SiteRepository implements SiteInterface
         return pow(($lowercaseLetters + $uppercaseLetters), $length);
     }
 
-    private function getUniquePathLength($length, $arrNewPaths)
+    public function getUniquePathLength($length, $arrNewPathCount)
     {
-        if (!isset($length)) $length = $this->uniquePathLength;
-
-        if (count($arrNewPaths) >= $this->getMaxUniquePathCombinations($length)) {
-            return $this->getUniquePathLength(++$length, $arrNewPaths);
+        if ($arrNewPathCount >= $this->getMaxUniquePathCombinations($length)) {
+            return $this->getUniquePathLength(++$length, $arrNewPathCount);
         }
 
         return $length;
     }
 
-    private function getUniquePath($length)
+    public function getUniquePath($length = null)
     {
         $arrSiteNewPaths = Site::pluck('new_path')->toArray();
-        $length = $this->getUniquePathLength($length, $arrSiteNewPaths);
+        if (!isset($length)) $length = $this->uniquePathLength;
+        $length = $this->getUniquePathLength($length, count($arrSiteNewPaths));
 
         do {
             $uniquePath = Str::random($length);
