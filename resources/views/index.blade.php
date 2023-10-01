@@ -11,7 +11,7 @@
                 @csrf
 
                 <div class="main--input-group input-group input-group-lg bg-white rounded-pill d-flex">
-                    <input type="text" name='url' required placeholder="Paste your looooooooong url links"
+                    <input type="text" name='url' required placeholder="Paste looooooooong url links here"
                         class="main--input form-control bg-white border border-0 rounded-pill" autocomplete='off'>
                     <button class="btn btn-outline-primary main--button rounded-pill text-uppercase" type='submit'>
                         Shorten
