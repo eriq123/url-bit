@@ -8,14 +8,36 @@ use Illuminate\Support\Str;
 
 class SiteRepository implements SiteInterface
 {
+    private $uniquePathLength = 3;
+
     public function getSiteByNewPath($newPath)
     {
         return Site::where('new_path', $newPath)->first();
     }
 
-    private function getUniquePath($length = 4)
+    public function getMaxUniquePathCombinations($length)
+    {
+        $lowercaseLetters = 26;
+        $uppercaseLetters = 26;
+
+        return pow(($lowercaseLetters + $uppercaseLetters), $length);
+    }
+
+    public function getUniquePathLength($length, $arrNewPathCount)
+    {
+        if ($arrNewPathCount >= $this->getMaxUniquePathCombinations($length)) {
+            return $this->getUniquePathLength(++$length, $arrNewPathCount);
+        }
+
+        return $length;
+    }
+
+    public function getUniquePath($length = null)
     {
         $arrSiteNewPaths = Site::pluck('new_path')->toArray();
+        if (!isset($length)) $length = $this->uniquePathLength;
+        $length = $this->getUniquePathLength($length, count($arrSiteNewPaths));
+
         do {
             $uniquePath = Str::random($length);
         } while (in_array($uniquePath, $arrSiteNewPaths));
