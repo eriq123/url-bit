@@ -50,8 +50,18 @@
 
 @section('js')
     <script>
-        function copy(text) {
-            navigator.clipboard.writeText(text)
-        }
+        const copy = (text) => navigator.clipboard.writeText(text);
+        const mainInput = document.querySelector('.main--input');
+        const mainInputGroup = document.querySelector('.main--input-group');
+
+        ['focusin', 'focusout'].forEach((event) => {
+            mainInput.addEventListener(event, (e) => {
+                if (document.activeElement === mainInput) {
+                    mainInputGroup.classList.add('active');
+                } else {
+                    mainInputGroup.classList.remove('active');
+                }
+            });
+        })
     </script>
 @endsection

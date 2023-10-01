@@ -40,6 +40,9 @@ $navbarHeight: 80px;
 $inputGroupHeight: 80px;
 .main--form {
     height: calc(50vh - $navbarHeight + ($inputGroupHeight / 2));
+    .active {
+        box-shadow: 0 0 0 0.25rem shade-color($primary-bg-subtle, 5%);
+    }
     .main--input-group {
         height: $inputGroupHeight;
         border-radius: $borderRadius;
