@@ -1,6 +1,8 @@
 @extends('layout.main')
-@section('content')
+@section('header')
     <div class='bg-primary-subtle bg-gradient main--background z-n1'></div>
+@endsection
+@section('content')
     <div class="container py-0">
         <div class="main--form d-flex flex-column">
 

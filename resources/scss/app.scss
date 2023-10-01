@@ -7,6 +7,18 @@ body {
     background: $gray-200;
 }
 
+.main--alert-error {
+    position: sticky;
+    bottom: 30px;
+    left: calc(100% - 350px - 30px);
+    width: 350px;
+    & .main--alert-close-button {
+        display: flex;
+        height: 34px;
+        align-items: center;
+    }
+}
+
 $navbarHeight: 80px;
 .navbar {
     height: $navbarHeight;
