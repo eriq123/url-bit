@@ -5,7 +5,7 @@
                 class="rounded-circle">
             {{ Str::upper(config('app.name')) }}
         </a>
-
+        {{--
         <div class="collapse navbar-collapse d-flex justify-content-end">
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -15,6 +15,6 @@
                     <a class="nav-link text-uppercase" href="#">Contact Us</a>
                 </li>
             </ul>
-        </div>
+        </div> --}}
     </div>
 </nav>
