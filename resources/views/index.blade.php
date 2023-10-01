@@ -12,7 +12,7 @@
             </div>
         </form>
         @if (isset($sites) && count($sites) > 0)
-            <div class="py-5 px-3 my-5 border border-black-1 rounded-4 bg-white">
+            <div class="py-4 px-4 my-5 border border-black-1 rounded-4 bg-white">
                 @foreach ($sites as $site)
                     <div class="card mb-3 border border-0 border-bottom rounded-0">
                         <div class="card-body d-flex justify-content-between flex-row">
