@@ -11,22 +11,26 @@
                 </button>
             </div>
         </form>
-        <div class="py-5">
-            @foreach ($sites as $site)
-                <div class="card mb-3">
-                    <div class="card-body d-flex justify-content-between flex-row">
+        @if (isset($sites) && count($sites) > 0)
+            <div class="py-5 px-3 my-5 border border-black-1 rounded-4 bg-white">
+                @foreach ($sites as $site)
+                    <div class="card mb-3 border border-0 border-bottom rounded-0">
+                        <div class="card-body d-flex justify-content-between flex-row">
 
-                        <a href="{{ route('redirect', ['url' => $site->new_path]) }}" target="_blank"
-                            class="align-self-center">
-                            {{ Request::root() }}/{{ $site->new_path }}
-                        </a>
+                            <a href="{{ route('redirect', ['url' => $site->new_path]) }}" target="_blank"
+                                class="align-self-center pe-4 d-inline-block" data-bs-toggle="tooltip"
+                                data-bs-placement="right" data-bs-title="{{ Str::limit($site->full_path, 50) }}">
+                                {{ Request::root() }}/{{ $site->new_path }}
+                            </a>
 
-                        <button type='button' class="btn d-inline">
-                            Copy
-                        </button>
+                            <button type='button' class="btn d-inline" data-bs-toggle="tooltip" data-bs-placement="right"
+                                data-bs-title="Copy link">
+                                @include('svg.copy')
+                            </button>
+                        </div>
                     </div>
-                </div>
-            @endforeach
-        </div>
+                @endforeach
+            </div>
+        @endif
     </div>
 @endsection
