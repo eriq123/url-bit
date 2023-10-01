@@ -11,11 +11,9 @@
 </head>
 
 <body>
-    <div class='bg-primary-subtle bg-gradient main--background z-n1'></div>
     @include('partials.header')
-
+    @include('partials.alert')
     @yield('content')
-
     @yield('js')
 </body>
 

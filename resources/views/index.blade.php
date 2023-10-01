@@ -1,5 +1,6 @@
 @extends('layout.main')
 @section('content')
+    <div class='bg-primary-subtle bg-gradient main--background z-n1'></div>
     <div class="container py-0">
         <div class="main--form d-flex flex-column">
 
