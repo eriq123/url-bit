@@ -34,7 +34,8 @@ class SiteShortenRequest extends FormRequest
     public function messages()
     {
         return [
-            'url.required' => 'URL is required',
+            'url.required' => 'URL link is required',
+            'url.url' => 'URL link must be valid',
         ];
     }
 }
