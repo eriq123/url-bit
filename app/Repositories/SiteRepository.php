@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 
 class SiteRepository implements SiteInterface
 {
-    private $uniquePathLength = 4;
+    private $uniquePathLength = 3;
 
     public function getSiteByNewPath($newPath)
     {
