@@ -23,8 +23,9 @@
                                 {{ Request::root() }}/{{ $site->new_path }}
                             </a>
 
-                            <button type='button' class="btn d-inline" data-bs-toggle="tooltip" data-bs-placement="right"
-                                data-bs-title="Copy link">
+                            <button type='button' class="btn d-inline home--button-copy" data-bs-toggle="tooltip"
+                                data-bs-placement="right" data-bs-title="Copy link"
+                                onClick='copy("{{ Request::root() }}/{{ $site->new_path }}")'>
                                 @include('svg.copy')
                             </button>
                         </div>
@@ -33,4 +34,12 @@
             </div>
         @endif
     </div>
+@endsection
+
+@section('js')
+    <script>
+        function copy(text) {
+            navigator.clipboard.writeText(text)
+        }
+    </script>
 @endsection
