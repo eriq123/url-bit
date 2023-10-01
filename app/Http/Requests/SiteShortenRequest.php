@@ -22,7 +22,7 @@ class SiteShortenRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'url' => 'required'
+            'url' => 'required|url'
         ];
     }
 
