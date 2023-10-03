@@ -5,10 +5,15 @@
 @section('content')
     <div class="container py-0">
         <div class="main--form d-flex flex-column">
-
             <div class="flex-grow-1 d-flex flex-column justify-content-center">
                 <h1 class="text-center text-uppercase display-1 text-primary-emphasis fw-bold">{{ config('app.name') }}</h1>
-                <h3 class="text-center text-italic text-uppercase text-light-emphasis">Shorten long urls</h3>
+                <h3 class="text-center text-italic text-uppercase text-light-emphasis d-inline">
+                    <span data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Click to shorten this link"
+                        class="px-2 home--subtitle" role='button'>
+                        Shorten https://loooooooooooong-url.com
+                    </span>
+                </h3>
+
             </div>
             <form action="{{ route('shorten') }}" method="POST" class="align-items-end">
                 @csrf
@@ -62,6 +67,15 @@
                     mainInputGroup.classList.remove('active');
                 }
             });
+        })
+
+        const homeSubtitleClass = '.home--subtitle';
+        const homeSubtitle = document.querySelector(homeSubtitleClass);
+        homeSubtitle.addEventListener('click', () => {
+            homeSubtitle.textContent = `{{ Request::root() }}/short-url`;
+            homeSubtitleTooltip = bootstrap.Tooltip.getInstance(homeSubtitleClass)
+            homeSubtitleTooltip.disable();
+            homeSubtitle.removeAttribute('role')
         })
     </script>
 @endsection
