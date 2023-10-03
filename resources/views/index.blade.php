@@ -8,13 +8,13 @@
 
             <div class="flex-grow-1 d-flex flex-column justify-content-center">
                 <h1 class="text-center text-uppercase display-1 text-primary-emphasis fw-bold">{{ config('app.name') }}</h1>
-                <h3 class="text-center text-italic text-uppercase text-light-emphasis">Shorten long url links</h3>
+                <h3 class="text-center text-italic text-uppercase text-light-emphasis">Shorten long urls</h3>
             </div>
             <form action="{{ route('shorten') }}" method="POST" class="align-items-end">
                 @csrf
 
                 <div class="main--input-group input-group input-group-lg bg-white rounded-pill d-flex">
-                    <input type="text" name='url' required placeholder="Paste looooooooong url links here"
+                    <input type="text" name='url' required placeholder="Paste looooong url here"
                         class="main--input form-control bg-white border border-0 rounded-pill" autocomplete='off'>
                     <button class="btn btn-outline-primary main--button rounded-pill text-uppercase" type='submit'>
                         Shorten
